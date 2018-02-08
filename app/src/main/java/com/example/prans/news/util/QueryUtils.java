@@ -42,8 +42,7 @@ public class QueryUtils {
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
-        List<News> news = extractFeatureFromJson(jsonResponse);
-        return news;
+        return extractFeatureFromJson(jsonResponse);
     }
 
     private static URL createUrl(String stringUrl) {
@@ -129,7 +128,7 @@ public class QueryUtils {
                 String title = volume.getString("title");
                 String url = volume.getString("url");
 
-                String urlToImage = "https://www.google.co.in/about/img/social/generic-feed.svg";
+                String urlToImage = "";
 
                 if (volume.has("urlToImage")) {
                     urlToImage = volume.getString("urlToImage");

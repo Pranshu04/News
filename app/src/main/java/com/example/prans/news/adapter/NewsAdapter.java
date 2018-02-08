@@ -38,8 +38,9 @@ public class NewsAdapter extends ArrayAdapter<News> {
         News news = getItem(position);
 
         TextView tv_title = view.findViewById(R.id.title);
-        tv_title.setText(news.getTitle());
-
+        assert news != null;
+        String html = (news.getTitle()).replaceAll("<(.*?)\\>", " ");
+        tv_title.setText(html);
 
         ImageView urlToImage = view.findViewById(R.id.urlToImage);
         Picasso.with(getContext()).load(news.getUrlToImage()).into(urlToImage);
