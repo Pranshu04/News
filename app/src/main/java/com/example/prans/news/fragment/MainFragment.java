@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
@@ -18,6 +17,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.prans.news.NewsDetailsActivity;
 import com.example.prans.news.R;
 import com.example.prans.news.adapter.NewsAdapter;
 import com.example.prans.news.data.News;
@@ -57,8 +57,11 @@ public class MainFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 News news = mAdapter.getItem(i);
-                Uri headlinesUri = Uri.parse(news.getUrl());
-                Intent headlines_intent = new Intent(Intent.ACTION_VIEW, headlinesUri);
+                //   Uri headlinesUri = Uri.parse(news.getUrl());
+                Intent headlines_intent = new Intent(getActivity(), NewsDetailsActivity.class);
+                if (news != null) {
+                    headlines_intent.putExtra("url", news.getUrl());
+                }
                 startActivity(headlines_intent);
             }
         });
@@ -68,7 +71,10 @@ public class MainFragment extends Fragment {
                 getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
         // Get details on the currently active default data network
-        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        NetworkInfo networkInfo = null;
+        if (connMgr != null) {
+            networkInfo = connMgr.getActiveNetworkInfo();
+        }
 
         // If there is a network connection, fetch data
         if (networkInfo != null && networkInfo.isConnected()) {
