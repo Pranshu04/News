@@ -125,6 +125,8 @@ public class QueryUtils {
             for (int i = 0; i < articlesArray.length(); i++) {
                 // Get a single headLines at position i within the list of headLines
                 JSONObject volume = articlesArray.getJSONObject(i);
+                JSONObject object = volume.getJSONObject("source");
+                String source = object.getString("name");
                 String title = volume.getString("title");
                 String url = volume.getString("url");
 
@@ -133,7 +135,7 @@ public class QueryUtils {
                 if (volume.has("urlToImage")) {
                     urlToImage = volume.getString("urlToImage");
                 }
-                news.add(new News(title, urlToImage, url));
+                news.add(new News(title, urlToImage, url, source));
 
             }
         } catch (JSONException e) {   // If an error is thrown when executing any of the above statements in the "try" block,

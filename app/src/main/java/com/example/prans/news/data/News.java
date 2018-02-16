@@ -9,12 +9,21 @@ public class News {
     private String title;
     private String url;
     private String urlToImage;
+    private String source;
 
-    public News(String title, String urlToImage, String url) {
+    public News(String title, String urlToImage, String url, String source) {
         this.title = title;
         this.urlToImage = urlToImage;
         this.url = url;
+        this.source = source;
+    }
 
+    public String getSource() {
+        return source;
+    }
+
+    public void setSource(String source) {
+        this.source = source;
     }
 
     public String getTitle() {
