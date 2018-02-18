@@ -10,9 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.prans.news.R;
 import com.example.prans.news.data.News;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -46,7 +46,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         tv_source.setText(news.getSource());
 
         ImageView urlToImage = view.findViewById(R.id.urlToImage);
-        Picasso.with(getContext()).load(news.getUrlToImage()).into(urlToImage);
+        Glide.with(getContext()).load(news.getUrlToImage()).into(urlToImage);
 
         return view;
     }
