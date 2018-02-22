@@ -9,12 +9,12 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.prans.news.NewsDetailsActivity;
@@ -32,7 +32,7 @@ import java.util.List;
 public class MainFragment extends Fragment {
 
     private static final int NEWS_LOADER_ID = 1;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
     private NewsAdapter mAdapter;
 
     public MainFragment() {
@@ -40,12 +40,20 @@ public class MainFragment extends Fragment {
     }
 
 
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              final String QueryUrl) {
 
         View view = inflater.inflate(R.layout.fragment_news, container, false);
+        swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new NewsLoader(getContext(), QueryUrl);
+            }
+        });
 
-        final ProgressBar loading_indicator = view.findViewById(R.id.loading_indicator);
 
         // Find a reference to the {@link ListView} in the layout
         ListView listView = view.findViewById(R.id.list_view);
@@ -94,7 +102,6 @@ public class MainFragment extends Fragment {
 
                 @Override
                 public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
-
                     // Clear the adapter of previous earthquake data
                     mAdapter.clear();
 
@@ -103,7 +110,7 @@ public class MainFragment extends Fragment {
                     if (data != null && !data.isEmpty()) {
                         mAdapter.addAll(data);
                         mAdapter.notifyDataSetChanged();
-                        loading_indicator.setVisibility(View.GONE);
+                        swipeRefreshLayout.setRefreshing(false);
                     }
                 }
 
@@ -116,7 +123,7 @@ public class MainFragment extends Fragment {
             });
         } else {
 
-            loading_indicator.setVisibility(View.GONE);
+            swipeRefreshLayout.setRefreshing(false);
             Toast.makeText(getActivity(), "No internet Connection...", Toast.LENGTH_SHORT).show();
         }
         return view;
