@@ -21,7 +21,7 @@ public class HeadlinesFragment extends MainFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        String QueryUrl = "https://newsapi.org/v2/top-headlines?sources=the-times-of-india,google-news-in,the-hindu&apiKey=35c1bde1d45d4cc192403695ee31a59f";
+        String QueryUrl = "https://newsapi.org/v2/top-headlines?country=in&apiKey=35c1bde1d45d4cc192403695ee31a59f";
         return super.onCreateView(inflater, container, QueryUrl);
     }
 }

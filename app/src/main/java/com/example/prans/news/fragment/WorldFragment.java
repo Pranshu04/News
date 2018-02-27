@@ -21,7 +21,7 @@ public class WorldFragment extends MainFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        String QueryUrl = "https://newsapi.org/v2/top-headlines?sources=cnn,vice-news,the-new-york-times,usa-today,the-washington-post,bbc-news,the-telegraph,the-guardian-au,the-guardian-uk,the-irish-times,fox-news,new-york-magazine,google-news-au,al-jazeera-english,abc-news&apiKey=35c1bde1d45d4cc192403695ee31a59f";
+        String QueryUrl = "https://newsapi.org/v2/top-headlines?sources=bbc-news,cnn,vice-news,the-new-york-times,usa-today,the-washington-post,the-telegraph,the-guardian-au,the-guardian-uk,the-irish-times,fox-news,al-jazeera-english&apiKey=35c1bde1d45d4cc192403695ee31a59f";
         return super.onCreateView(inflater, container, QueryUrl);
     }
 

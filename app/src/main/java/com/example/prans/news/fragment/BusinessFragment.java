@@ -22,7 +22,7 @@ public class BusinessFragment extends MainFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        String QueryUrl = " https://newsapi.org/v2/top-headlines?sources=fortune,cnbc,the-wall-street-journal,bloomberg,the-economist,financial-times,business-insider-uk,australian-financial-review&apiKey=35c1bde1d45d4cc192403695ee31a59f";
+        String QueryUrl = " https://newsapi.org/v2/top-headlines?country=in&category=business&apiKey=35c1bde1d45d4cc192403695ee31a59f";
         return super.onCreateView(inflater, container, QueryUrl);
     }
 }

@@ -22,7 +22,7 @@ public class SportsFragment extends MainFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        String QueryUrl = "https://newsapi.org/v2/top-headlines?sources=espn-cric-info,bbc-sport,talksport,the-sport-bible,espn,four-four-two&apiKey=35c1bde1d45d4cc192403695ee31a59f";
+        String QueryUrl = "https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=35c1bde1d45d4cc192403695ee31a59f";
         return super.onCreateView(inflater, container, QueryUrl);
     }
 }

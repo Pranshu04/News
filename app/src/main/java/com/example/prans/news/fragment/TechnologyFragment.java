@@ -22,7 +22,7 @@ public class TechnologyFragment extends MainFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        String QueryUrl = "https://newsapi.org/v2/top-headlines?sources=techcrunch,techradar,the-verge,recode,crypto-coins-news,wired,hacker-news,the-next-web&apiKey=35c1bde1d45d4cc192403695ee31a59f";
+        String QueryUrl = "https://newsapi.org/v2/top-headlines?country=in&category=technology&apiKey=35c1bde1d45d4cc192403695ee31a59f";
         return super.onCreateView(inflater, container, QueryUrl);
     }
 
