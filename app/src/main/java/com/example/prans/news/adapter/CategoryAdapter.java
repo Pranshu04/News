@@ -10,6 +10,7 @@ import com.example.prans.news.fragment.BusinessFragment;
 import com.example.prans.news.fragment.EntertainmentFragment;
 import com.example.prans.news.fragment.HeadlinesFragment;
 import com.example.prans.news.fragment.HealthFragment;
+import com.example.prans.news.fragment.ScienceFragment;
 import com.example.prans.news.fragment.SportsFragment;
 import com.example.prans.news.fragment.TechnologyFragment;
 import com.example.prans.news.fragment.WorldFragment;
@@ -44,12 +45,15 @@ public class CategoryAdapter extends FragmentPagerAdapter {
                 fragment = new BusinessFragment();
                 break;
             case 4:
-                fragment = new SportsFragment();
+                fragment = new ScienceFragment();
                 break;
             case 5:
-                fragment = new EntertainmentFragment();
+                fragment = new SportsFragment();
                 break;
             case 6:
+                fragment = new EntertainmentFragment();
+                break;
+            case 7:
                 fragment = new HealthFragment();
                 break;
             default:
@@ -82,12 +86,15 @@ public class CategoryAdapter extends FragmentPagerAdapter {
                 pageTitle = mContext.getString(R.string.category_business);
                 break;
             case 4:
-                pageTitle = mContext.getString(R.string.category_sports);
+                pageTitle = mContext.getString(R.string.category_science);
                 break;
             case 5:
-                pageTitle = mContext.getString(R.string.category_entertainment);
+                pageTitle = mContext.getString(R.string.category_sports);
                 break;
             case 6:
+                pageTitle = mContext.getString(R.string.category_entertainment);
+                break;
+            case 7:
                 pageTitle = mContext.getString(R.string.category_health);
                 break;
             default:
