@@ -43,6 +43,9 @@ public class News {
     }
 
     public String getUrlToImage() {
+        if (urlToImage == null) {
+            urlToImage = "https://www.google.co.in/about/img/social/generic-feed.svg";
+        }
         return urlToImage;
     }
 
