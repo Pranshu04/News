@@ -44,7 +44,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         Picasso.with(getContext())
                 .load(news.getUrlToImage())
                 .resize(80, 80)
-                //    .placeholder(R.drawable.ic_whatshot_black_24dp)
+                .placeholder(R.drawable.ic_crop_landscap)
                 .centerCrop()
                 .into(urlToImage);
 
