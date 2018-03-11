@@ -6,6 +6,7 @@ package com.example.prans.news.model;
 
 public class Contants {
 
+
     /********
      * URLS
      *******/
