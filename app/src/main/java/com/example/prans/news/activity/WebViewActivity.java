@@ -1,4 +1,4 @@
-package com.example.prans.news;
+package com.example.prans.news.activity;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -7,7 +7,10 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class NewsDetailsActivity extends AppCompatActivity {
+import com.example.prans.news.R;
+
+public class WebViewActivity extends AppCompatActivity {
+
 
     WebView webView;
     SwipeRefreshLayout refreshLayout;
@@ -16,16 +19,25 @@ public class NewsDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_details);
+        setContentView(R.layout.activity_web_view);
 
         url = getIntent().getStringExtra("url");
+
         refreshLayout = findViewById(R.id.swipe_refresh);
+
         refreshLayout.setRefreshing(true);
-        refreshLayout.setColorSchemeResources(R.color.colorAccent);
+
+        refreshLayout.setColorSchemeResources(
+                R.color.colorAccent,
+                R.color.colorGreen,
+                R.color.colorBlue,
+                R.color.colorOrange);
+
         webView = findViewById(R.id.webView);
+        //  webView.getSettings().setJavaScriptEnabled(true);
 
         webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setDisplayZoomControls(false);
+        webView.getSettings().setDisplayZoomControls(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl(url);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -44,6 +56,7 @@ public class NewsDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     @Override

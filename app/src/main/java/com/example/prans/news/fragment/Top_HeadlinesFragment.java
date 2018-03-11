@@ -28,13 +28,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.prans.news.model.Contants.API_KEY;
-import static com.example.prans.news.model.Contants.CATEGORY_HEALTH;
 import static com.example.prans.news.model.Contants.COUNTRY;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HealthFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class Top_HeadlinesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
 
     View view;
@@ -43,9 +42,10 @@ public class HealthFragment extends Fragment implements SwipeRefreshLayout.OnRef
     private NewsAdapter mAdapter;
     private ListView listView;
 
-    public HealthFragment() {
+    public Top_HeadlinesFragment() {
         // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,14 +57,16 @@ public class HealthFragment extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void initViews() {
+
         swipeRefreshLayout = view.findViewById(R.id.swipe_refresh_layout);
-        swipeRefreshLayout.setRefreshing(true);
+        swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(
                 R.color.colorAccent,
                 R.color.colorGreen,
                 R.color.colorBlue,
                 R.color.colorOrange);
         loadJSON();
+
         listView = view.findViewById(R.id.list_View);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -83,7 +85,7 @@ public class HealthFragment extends Fragment implements SwipeRefreshLayout.OnRef
         if (Internet.checkConnection(getContext())) {
             ApiResponse request = ApiClient.getApiService();
 
-            Call<NewsResource> call = request.getCategoryOfHeadlines(COUNTRY, CATEGORY_HEALTH, API_KEY);
+            Call<NewsResource> call = request.getTopHeadlines(COUNTRY, API_KEY);
             call.enqueue(new Callback<NewsResource>() {
 
                 @Override

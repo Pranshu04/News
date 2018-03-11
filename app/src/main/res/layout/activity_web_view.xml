@@ -4,7 +4,7 @@
     android:id="@+id/swipe_refresh"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.prans.news.NewsDetailsActivity">
+    tools:context="com.example.prans.news.activity.WebViewActivity">
 
     <WebView
         android:id="@+id/webView"

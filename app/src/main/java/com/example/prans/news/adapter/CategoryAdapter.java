@@ -8,11 +8,11 @@ import android.support.v4.app.FragmentPagerAdapter;
 import com.example.prans.news.R;
 import com.example.prans.news.fragment.BusinessFragment;
 import com.example.prans.news.fragment.EntertainmentFragment;
-import com.example.prans.news.fragment.HeadlinesFragment;
 import com.example.prans.news.fragment.HealthFragment;
 import com.example.prans.news.fragment.ScienceFragment;
 import com.example.prans.news.fragment.SportsFragment;
 import com.example.prans.news.fragment.TechnologyFragment;
+import com.example.prans.news.fragment.Top_HeadlinesFragment;
 import com.example.prans.news.fragment.WorldFragment;
 
 /**
@@ -33,7 +33,7 @@ public class CategoryAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case 0:
-                fragment = new HeadlinesFragment();
+                fragment = new Top_HeadlinesFragment();
                 break;
             case 1:
                 fragment = new WorldFragment();

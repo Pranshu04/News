@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.prans.news.MainActivity">
+    tools:context="com.example.prans.news.activity.MainActivity">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tabs"

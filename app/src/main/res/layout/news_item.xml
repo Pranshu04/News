@@ -10,29 +10,13 @@
         android:layout_width="80dp"
         android:layout_height="80dp" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:text=""
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/source"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:text="" />
-    </LinearLayout>
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:text=""
+        android:textSize="14sp" />
 
 </LinearLayout>

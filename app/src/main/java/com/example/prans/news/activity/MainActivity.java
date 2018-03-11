@@ -1,4 +1,4 @@
-package com.example.prans.news;
+package com.example.prans.news.activity;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.prans.news.R;
 import com.example.prans.news.adapter.CategoryAdapter;
 
 public class MainActivity extends AppCompatActivity {

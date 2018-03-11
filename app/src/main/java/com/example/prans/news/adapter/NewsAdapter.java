@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.prans.news.R;
-import com.example.prans.news.data.News;
+import com.example.prans.news.model.News;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -38,17 +38,13 @@ public class NewsAdapter extends ArrayAdapter<News> {
         News news = getItem(position);
 
         TextView tv_title = view.findViewById(R.id.title);
-        assert news != null;
-        String html = (news.getTitle()).replaceAll("<(.*?)\\>", " ");
-        tv_title.setText(html);
-
-        TextView tv_source = view.findViewById(R.id.source);
-        tv_source.setText(news.getSource());
+        tv_title.setText(news.getTitle());
 
         ImageView urlToImage = view.findViewById(R.id.urlToImage);
         Picasso.with(getContext())
                 .load(news.getUrlToImage())
                 .resize(80, 80)
+                //    .placeholder(R.drawable.ic_whatshot_black_24dp)
                 .centerCrop()
                 .into(urlToImage);
 
