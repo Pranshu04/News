@@ -13,7 +13,7 @@ public class Contants {
     public static final String BASE_URL = "https://newsapi.org/v2/";
 
     //API Key
-    public static final String API_KEY = "YOUR API KEY";
+    public static final String API_KEY = "35c1bde1d45d4cc192403695ee31a59f";  //YOUR API KEY
 
     public static final String COUNTRY = "in";
 
