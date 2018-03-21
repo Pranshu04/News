@@ -13,10 +13,14 @@
 # What I've learned :
 This project is about combining various ideas and skills we’ve been practicing throughout the course. They include:
 
-- Using AsyncTasks to connect to the internet.
-- Using AsyncTasksLoader to connect to the internet.
-- Reading and parsing JSON data.
+- Fetching JSON data and parsing it.
+- Working with libraries like Retrofit,GSON and Picasso.
+- Use of multiple Fragments inside the activity.
 - Doing network operations independent of the Activity lifecycle.
 
 # Screenshots
 <br> </br> <img src="https://github.com/Pranshu04/News/blob/master/images/news.gif" height=500 width=300>
+
+**It is a fully open source project so go ahead and fork it.**
+
+**Note:-** Please use your own API KEY. Register your APIKey from [NewsAPI.org](https://newsapi.org).
