@@ -1,8 +1,11 @@
 package com.example.prans.news.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -54,6 +57,17 @@ public class WebViewActivity extends AppCompatActivity {
                 } else {
                     refreshLayout.setRefreshing(true);
                 }
+            }
+        });
+
+        FloatingActionButton fab = findViewById(R.id.fab_share);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(Intent.EXTRA_TEXT, url);
+                startActivity(Intent.createChooser(shareIntent, "Share link using"));
             }
         });
 
