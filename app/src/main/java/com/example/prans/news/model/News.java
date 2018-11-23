@@ -19,11 +19,23 @@ public class News {
     @Expose
     private String mUrlToImage;
 
+    public static final int NEWS_IMAGE_TYPE = 0;
+    public static final int NEWS_WITHOUT_IMAGE_TYPE = 1;
+    private int type;
 
-    public News(String mTitle, String mUrl, String mUrlToImage) {
+    public News(String mTitle, String mUrl, String mUrlToImage, int type) {
         this.mTitle = mTitle;
         this.mUrl = mUrl;
         this.mUrlToImage = mUrlToImage;
+        this.type = type;
+    }
+
+    public int getType() {
+        if (mUrlToImage == null) {
+            return NEWS_WITHOUT_IMAGE_TYPE;
+        } else {
+            return NEWS_IMAGE_TYPE;
+        }
     }
 
     public String getTitle() {

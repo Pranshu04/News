@@ -1,13 +1,10 @@
 package com.example.prans.news.adapter;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.text.TextUtils;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,47 +14,87 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-/**
- * Created by prans on 08-01-2018.
- */
+import static com.example.prans.news.model.News.NEWS_IMAGE_TYPE;
+import static com.example.prans.news.model.News.NEWS_WITHOUT_IMAGE_TYPE;
 
-public class NewsAdapter extends ArrayAdapter<News> {
-    public NewsAdapter(@NonNull Context context, List<News> news) {
-        super(context, 0, news);
+public class NewsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private List<News> newsList;
+
+    public NewsAdapter(List<News> newsList) {
+        this.newsList = newsList;
     }
 
     @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
-        View view = convertView;
-
-        if (view == null) {
-            view = LayoutInflater.from(getContext()).inflate(R.layout.news_item, parent, false);
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        View view;
+        switch (i) {
+            case NEWS_IMAGE_TYPE:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.news_item, viewGroup, false);
+                return new NewsWithImageViewHolder(view);
+            case NEWS_WITHOUT_IMAGE_TYPE:
+                view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.news_item_without_image, viewGroup, false);
+                return new NewsWithOutImageViewHolder(view);
         }
+        return null;
+    }
 
-        News news = getItem(position);
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+        News news = newsList.get(i);
+        switch (news.getType()) {
+            case NEWS_IMAGE_TYPE:
+                ((NewsWithImageViewHolder) viewHolder).tv_news_with_image_item.setText(news.getTitle());
+                Picasso.get()
+                        .load(news.getUrlToImage())
+                        .resize(200, 200)
+                        .centerCrop()
+                        .into(((NewsWithImageViewHolder) viewHolder).iv_news);
+                break;
+            case NEWS_WITHOUT_IMAGE_TYPE:
+                ((NewsWithOutImageViewHolder) viewHolder).tv_news_item.setText(news.getTitle());
+                break;
+        }
+    }
 
-        TextView tv_title = view.findViewById(R.id.title);
+    @Override
+    public int getItemViewType(int position) {
+
+        News news = newsList.get(position);
+
         if (news != null) {
-            tv_title.setText(news.getTitle());
+            return news.getType();
         }
 
-        ImageView urlToImage = view.findViewById(R.id.urlToImage);
+        return 0;
+    }
 
-        if (TextUtils.isEmpty(news.getUrlToImage())) {
-            Picasso.get()
-                    .load(news.getUrlToImage())
-                    .placeholder(R.drawable.ic_whatshot_black_24dp)
-                    .into(urlToImage);
-        } else {
-            Picasso
-                    .get()
-                    .load(news.getUrlToImage())
-                    .resize(150, 150)
-                    .centerCrop()
-                    .into(urlToImage);
+    @Override
+    public int getItemCount() {
+        return newsList.size();
+    }
+
+    public class NewsWithImageViewHolder extends RecyclerView.ViewHolder {
+
+        TextView tv_news_with_image_item;
+        ImageView iv_news;
+
+        public NewsWithImageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tv_news_with_image_item = itemView.findViewById(R.id.title);
+            iv_news = itemView.findViewById(R.id.urlToImage);
+
         }
-        return view;
+    }
+
+    public class NewsWithOutImageViewHolder extends RecyclerView.ViewHolder {
+
+        TextView tv_news_item;
+
+        public NewsWithOutImageViewHolder(@NonNull View itemView) {
+            super(itemView);
+            tv_news_item = itemView.findViewById(R.id.tv_news_title);
+        }
     }
 }

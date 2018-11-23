@@ -1,19 +1,18 @@
 package com.example.prans.news.fragment;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.prans.news.R;
-import com.example.prans.news.activity.WebViewActivity;
 import com.example.prans.news.adapter.NewsAdapter;
 import com.example.prans.news.model.News;
 import com.example.prans.news.model.NewsResource;
@@ -41,7 +40,7 @@ public class TechnologyFragment extends Fragment implements SwipeRefreshLayout.O
     private SwipeRefreshLayout swipeRefreshLayout;
     private ArrayList<News> newsArrayList = new ArrayList<>();
     private NewsAdapter mAdapter;
-    private ListView listView;
+    private RecyclerView recyclerView;
 
     public TechnologyFragment() {
         // Required empty public constructor
@@ -66,16 +65,21 @@ public class TechnologyFragment extends Fragment implements SwipeRefreshLayout.O
                 R.color.colorOrange);
         loadJSON();
 
-        listView = view.findViewById(R.id.list_View);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                News news = mAdapter.getItem(position);
-                Intent title_Intent = new Intent(getActivity(), WebViewActivity.class);
-                title_Intent.putExtra("url", news.getUrl());
-                startActivity(title_Intent);
-            }
-        });
+        recyclerView = view.findViewById(R.id.recyclerView);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity(),
+                LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
+
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                News news = mAdapter.getItem(position);
+//                Intent title_Intent = new Intent(getActivity(), WebViewActivity.class);
+//                title_Intent.putExtra("url", news.getUrl());
+//                startActivity(title_Intent);
+//            }
+//        });
     }
 
     private void loadJSON() {
@@ -98,8 +102,8 @@ public class TechnologyFragment extends Fragment implements SwipeRefreshLayout.O
 
                         newsArrayList = response.body().getArticles();
 
-                        mAdapter = new NewsAdapter(getActivity(), newsArrayList);
-                        listView.setAdapter(mAdapter);
+                        mAdapter = new NewsAdapter(newsArrayList);
+                        recyclerView.setAdapter(mAdapter);
                     }
                 }
 
