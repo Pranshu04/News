@@ -37,7 +37,7 @@ public class WebViewActivity extends AppCompatActivity {
                 R.color.colorOrange);
 
         webView = findViewById(R.id.webView);
-        //  webView.getSettings().setJavaScriptEnabled(true);
+        webView.getSettings().setJavaScriptEnabled(true);
 
         webView.getSettings().setBuiltInZoomControls(true);
         webView.getSettings().setDisplayZoomControls(true);
@@ -74,8 +74,8 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         getCacheDir().deleteOnExit();
         webView.clearCache(true);
     }

@@ -1,6 +1,7 @@
 package com.example.prans.news.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,7 +14,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.prans.news.R;
+import com.example.prans.news.activity.WebViewActivity;
 import com.example.prans.news.adapter.NewsAdapter;
+import com.example.prans.news.adapter.RecyclerTouchListener;
 import com.example.prans.news.model.News;
 import com.example.prans.news.model.NewsResource;
 import com.example.prans.news.util.ApiClient;
@@ -72,15 +75,20 @@ public class ScienceFragment extends Fragment implements SwipeRefreshLayout.OnRe
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), LinearLayoutManager.VERTICAL));
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                News news = mAdapter.getItem(position);
-//                Intent title_Intent = new Intent(getActivity(), WebViewActivity.class);
-//                title_Intent.putExtra("url", news.getUrl());
-//                startActivity(title_Intent);
-//            }
-//        });
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                News news = newsArrayList.get(position);
+                Intent title_Intent = new Intent(getActivity(), WebViewActivity.class);
+                title_Intent.putExtra("url", news.getUrl());
+                startActivity(title_Intent);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
     }
 
     private void loadJSON() {

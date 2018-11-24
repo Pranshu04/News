@@ -13,7 +13,7 @@ public class Contants {
     public static final String BASE_URL = "https://newsapi.org/v2/";
 
     //API Key
-    public static final String API_KEY = "35c1bde1d45d4cc192403695ee31a59f";
+    public static final String API_KEY = "Your API Key";
 
     public static final String COUNTRY = "in";
 
@@ -29,8 +29,6 @@ public class Contants {
     public static final String CATEGORY_TECHNOLOGY = "technology";
 
     public static final String CATEGORY_ENTERTAINMENT = "entertainment";
-
-    public static final String CATEGORY_HEALTH = "health";
 
     public static final String CATEGORY_SCIENCE = "science";
 

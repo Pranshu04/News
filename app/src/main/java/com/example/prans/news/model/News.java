@@ -39,27 +39,18 @@ public class News {
     }
 
     public String getTitle() {
-        String title = mTitle.replace("/<(.*?)\\>", "");
-        return title;
-    }
-
-    public void setTitle(String mTitle) {
-        this.mTitle = mTitle;
+        return mTitle.replace("/<(.*?)\\>", "");
     }
 
     public String getUrl() {
         return mUrl;
     }
 
-    public void setUrl(String mUrl) {
-        this.mUrl = mUrl;
-    }
-
     public String getUrlToImage() {
-        return mUrlToImage;
-    }
-
-    public void setUrlToImage(String mUrlToImage) {
-        this.mUrlToImage = mUrlToImage;
+        if (mUrlToImage.equals("")) {
+            return mUrlToImage = null;
+        } else {
+            return mUrlToImage;
+        }
     }
 }
